@@ -19,10 +19,10 @@ Hello, employee! The editing is disabled for security reasons in the demo.
 <h3>My Active Tasks</h3>
 
 <?php
-$empId = intval(2);
+$empId = intval(2); // hard code for demo. In real world, the id should be retrieved in PHP SESSION 
 
 $dgTask = new C_DataGrid("SELECT id, EmployeeID, TaskName, Instructions, StatusID, MilestoneID, ProjectID FROM tasks", "id", "tasks");
-$dgTask->set_query_filter(" EmployeeID = $empId AND StatusID = 2 ");
+$dgTask->set_query_filter(" EmployeeID = $empId AND StatusID = 2 "); // Active = 2
 $dgTask->set_col_hidden('id, EmployeeID')->set_sortname('TaskName');
 $dgTask->set_col_edittype('StatusID', 'select', "select id, status from task_status");
 $dgTask->set_col_edittype('EmployeeID', 'select', "select id, concat(FirstName, ' ', LastName) from users");
@@ -42,11 +42,12 @@ $dgTask->display();
 <h3>My Hours</h3>
 
 <?php
-$dgHour = new C_DataGrid("SELECT id, `Date`, `Time`, WorkCompleted, TaskID, ProjectID, EmployeeID FROM hours", "id", "hours");
-$dgHour->set_query_filter(" EmployeeID = $empId ");
-$dgHour->set_col_hidden('id, TaskID, EmployeeID');
-$dgHour->set_col_edittype('ProjectID', 'select', "select id, ProjectName from projects");
-$dgHour->display();
+$dgHour2 = new C_DataGrid("SELECT id, `Date`, `Time`, WorkCompleted, TaskID, ProjectID, EmployeeID FROM hours", "id", "hours");
+$dgHour2->set_jq_gridName('hours2'); // the grid name must be unique
+$dgHour2->set_query_filter(" EmployeeID = $empId ");
+$dgHour2->set_col_hidden('id, TaskID, EmployeeID');
+$dgHour2->set_col_edittype('ProjectID', 'select', "select id, ProjectName from projects");
+$dgHour2->display();
 ?>
 
 <?php
