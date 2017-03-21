@@ -7,5 +7,5 @@
 
 <br />
 <div style="color:red">
-Hello, manager! The editing is disabled for security reasons in the demo.
+Hello, manager! 
 </div>
